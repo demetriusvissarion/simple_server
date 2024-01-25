@@ -23,7 +23,24 @@ def post_data():
 
     except Exception as e:
         return jsonify({'error': f'Error processing the request: {str(e)}'}), 400
+    
+todos = [
+    {
+        'title': 'Walk the dog',
+        'done': False
+    },
+    {
+        'title': 'Buy some food',
+        'done': False
+    }
+]
 
+@app.route('/todos', methods=['GET'])
+def get_todos():
+    try:
+        return jsonify(todos), 200
+    except Exception as e:
+        return jsonify({'error': f'Error processing the request: {str(e)}'}), 400
 
 if __name__ == '__main__':
     app.run(
