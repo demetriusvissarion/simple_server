@@ -15,10 +15,11 @@ def post_data():
         data = request.json 
         username = data.get('username')  
         password = data.get('password')
+        phoneNumber = data.get('phoneNumber')
 
         # Perform any processing or store data as needed
         # For now, just echoing back the received data
-        return jsonify({'message': f'Success! Received username: {username}, password: {password}'}), 200
+        return jsonify({'message': f'Success! Received username: {username}, password: {password}, phoneNumber: {phoneNumber}'}), 200
 
     except Exception as e:
         return jsonify({'error': f'Error processing the request: {str(e)}'}), 400
