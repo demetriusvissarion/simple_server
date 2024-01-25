@@ -42,6 +42,17 @@ def get_todos():
     except Exception as e:
         return jsonify({'error': f'Error processing the request: {str(e)}'}), 400
 
+@app.route('/todos/<todo_title>', methods=['GET'])
+def get_todo_by_title(todo_title):
+    try:
+        todo = next((t for t in todos if t['title'] == todo_title), None)
+        if todo:
+            return jsonify(todo), 200
+        else:
+            return jsonify({'error': f'Todo with title "{todo_title}" not found'}), 404
+    except Exception as e:
+        return jsonify({'error': f'Error processing the request: {str(e)}'}), 400
+
 if __name__ == '__main__':
     app.run(
       debug=True,
